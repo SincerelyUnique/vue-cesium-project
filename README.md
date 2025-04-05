@@ -1,6 +1,6 @@
 # vue-cesium-project
 
-> learn vue-cesium
+> learn vue-cesium, project init from https://github.com/element-plus/element-plus-vite-starter
 
 ## install cesium
 npm install cesium @cesium/engine @cesium/widgets vite-plugin-cesium -D
