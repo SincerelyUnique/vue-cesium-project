@@ -8,6 +8,8 @@ import VueRouter from 'unplugin-vue-router/vite'
 
 import { defineConfig } from 'vite'
 
+import cesium from 'vite-plugin-cesium'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -50,10 +52,26 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see uno.config.ts for config
     Unocss(),
+
+    cesium(),
   ],
 
   ssr: {
     // TODO: workaround until they support native ESM
     noExternal: ['element-plus'],
   },
+
+  server: {
+    fs: {
+      // 允许访问 cesium 的静态资源
+      allow: [
+        process.cwd(),
+        path.resolve(process.cwd()),
+        'node_modules/cesium/Build/Cesium'
+      ]
+    }
+  },
+  build: {
+    chunkSizeWarningLimit: 3000 // 增大 chunk 大小警告限制
+  }
 })
